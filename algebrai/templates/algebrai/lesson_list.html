@@ -1,0 +1,11 @@
+{% extends 'algebrai/base.html' %}
+{% block content %}
+<h2>All Lessons</h2>
+<div>
+    {% for lesson in lessons %}
+        <h3><a href="{% url 'lesson_detail' lesson.id %}">{{ lesson.title }}</a></h3>
+        <p>{{ lesson.description }}</p>
+
+    {% endfor %}
+</div>
+{% endblock %}

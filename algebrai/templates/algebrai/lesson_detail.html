@@ -1,0 +1,31 @@
+{% extends 'algebrai/base.html' %}
+{% block content %}
+
+<h2>{{lesson.title}}</h2>
+<p>{{lesson.description}}</p>
+
+<form method="POST" action="{% url 'grade_lesson' lesson.id %}">
+    {% csrf_token %}
+
+        {% for exercise in exercises %}
+             <div class="exercise">
+                 <p><strong>Question {{forloop.counter}}:</strong> {{exercise.question_text}}</p>
+
+                    {% for option in exercise.options.all %}
+                        <div>
+                            <label>
+                                <input type="radio" name="exercise_{{ exercise.id }}" value="{{option.id}}">
+                                {{ option.option_text }}
+                            </label><br>
+                        </div>
+                    {% endfor %}
+                        <br>
+             </div>
+{% empty %}
+    <p>No exercises available for this lesson yet.</p>
+{% endfor %}
+
+<button type="submit">Submit Answers</button>
+</form>
+
+{% endblock %}
