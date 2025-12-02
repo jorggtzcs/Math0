@@ -1,0 +1,16 @@
+{% extends 'algebrai/base.html' %}
+{% block content %}
+<h2>Teacher Dashboard</h2>
+
+<h3>Your student</h3>
+
+<ul>
+    {% for student in students %}
+    <li>
+        {{ student.user.username }}
+    </li>
+    {% empty %}
+    <li>No students found yet.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

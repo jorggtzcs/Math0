@@ -1,5 +1,13 @@
 {% extends 'algebrai/base.html' %}
 {% block content %}
-<h2>Welcome to your Dashboard</h2>
-<p>This is where students will see their progress and their lessons.</p>
+<h2>Dashboard</h2>
+
+{% for lp in lesson_progress %}
+<div>
+    <h3>{{ lp.lesson.title }}</h3>
+    <p>Completed {{ lp.complete }} out of {{ lp.total }} exercises</p>
+    <p>Correct {{ lp.correct_count }} out of {{ lp.total }} exercises</p>
+{% endfor %}
+</div>
+
 {% endblock %}
